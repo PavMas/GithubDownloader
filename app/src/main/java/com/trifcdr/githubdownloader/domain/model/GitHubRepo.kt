@@ -3,5 +3,8 @@ package com.trifcdr.githubdownloader.domain.model
 /**
  * Created by trifcdr.
  */
-class GitHubRepo {
-}
+data class GitHubRepo(val id: Long,
+                      val name: String,
+                      val owner: GitHubUser,
+                      val description: String,
+                      val language: String)

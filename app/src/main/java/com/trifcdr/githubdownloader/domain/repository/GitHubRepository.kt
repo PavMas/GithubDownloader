@@ -1,9 +1,7 @@
 package com.trifcdr.githubdownloader.domain.repository
 
-import com.trifcdr.githubdownloader.domain.model.GitHubRepo
-import com.trifcdr.githubdownloader.domain.model.GitHubUser
-import com.trifcdr.githubdownloader.domain.model.UsersList
-import com.trifcdr.githubdownloader.domain.model.UserParams
+import com.trifcdr.githubdownloader.data.database.model.Download
+import com.trifcdr.githubdownloader.domain.model.*
 
 /**
  * Created by trifcdr.
@@ -12,5 +10,11 @@ interface GitHubRepository {
 
     suspend fun getUser(userParams: UserParams) : UsersList
 
-    fun getRepository(user: GitHubUser) : GitHubRepo
+    suspend fun getRepository(user: GitHubUser) : ReposList
+
+    suspend fun downloadRepository(repo: GitHubRepo)
+
+    suspend fun getAllDownloads() : MutableList<Download>
+
+    suspend fun insertDownload(download: Download)
 }

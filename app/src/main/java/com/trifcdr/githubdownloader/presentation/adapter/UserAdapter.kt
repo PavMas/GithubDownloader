@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.trifcdr.githubdownloader.data.network.model.GhUser
 import com.trifcdr.githubdownloader.databinding.UserItemBinding
 import com.trifcdr.githubdownloader.domain.model.GitHubUser
-import com.trifcdr.githubdownloader.domain.model.UsersList
 
 /**
  * Created by trifcdr.

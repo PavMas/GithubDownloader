@@ -1,5 +1,8 @@
 package com.trifcdr.githubdownloader.domain.usecase
 
+import com.trifcdr.githubdownloader.domain.model.GitHubUser
+import com.trifcdr.githubdownloader.domain.model.ReposList
+import com.trifcdr.githubdownloader.domain.model.UserParams
 import com.trifcdr.githubdownloader.domain.repository.GitHubRepository
 
 /**
@@ -7,7 +10,7 @@ import com.trifcdr.githubdownloader.domain.repository.GitHubRepository
  */
 class GetRepositoryByUsername(val gitHubRepository: GitHubRepository) {
 
-    fun execute(){
-
+    suspend fun execute(ghUser: GitHubUser) : ReposList{
+        return gitHubRepository.getRepository(user = ghUser)
     }
 }

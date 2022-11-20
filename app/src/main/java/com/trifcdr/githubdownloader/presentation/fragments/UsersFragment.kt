@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.trifcdr.githubdownloader.R
 import com.trifcdr.githubdownloader.databinding.FragmentUsersBinding
 import com.trifcdr.githubdownloader.domain.model.UserParams
 import com.trifcdr.githubdownloader.presentation.MainActivity
@@ -44,7 +43,7 @@ class UsersFragment : Fragment() {
         binding.findBtn.setOnClickListener{
             (vm as MainViewModel).searchUsers(UserParams(binding.username.text.toString()))
         }
-        (vm as MainViewModel).resultLive.observe(viewLifecycleOwner) {
+        (vm as MainViewModel).resultLiveUsers.observe(viewLifecycleOwner) {
             adapter.setUserList(it.users)
 
         }

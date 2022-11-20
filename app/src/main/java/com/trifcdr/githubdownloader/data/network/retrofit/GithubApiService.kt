@@ -1,7 +1,9 @@
 package com.trifcdr.githubdownloader.data.network.retrofit
 
+import com.trifcdr.githubdownloader.data.network.model.ReposListResponse
 import com.trifcdr.githubdownloader.data.network.model.UsersListResponse
 import com.trifcdr.githubdownloader.data.rest.BASE_URL
+import com.trifcdr.githubdownloader.domain.model.GitHubRepo
 import com.trifcdr.githubdownloader.domain.model.GitHubUser
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,8 +23,8 @@ interface GithubApiService {
     @GET("/search/users")
     fun getUsers(@Query("q") username: String) : Call<UsersListResponse>
 
-    @GET("{url}")
-    fun getRepos(@Path("url") url: String)
+    @GET("/users/{username}/repos")
+    fun getRepos(@Path("username") name: String) : Call<MutableList<GitHubRepo>>
 
     companion object {
         var githubApiService: GithubApiService? = null
