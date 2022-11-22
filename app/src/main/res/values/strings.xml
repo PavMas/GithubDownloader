@@ -7,4 +7,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="download">Download</string>
     <string name="getrepository">GetRepository</string>
+    <string name="githubdownloader">GithubDownloader</string>
+    <string name="icon">icon</string>
 </resources>
