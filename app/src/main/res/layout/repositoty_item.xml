@@ -3,6 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -22,12 +26,27 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_gravity="end|center"
+        >
     <com.google.android.material.button.MaterialButton
         android:layout_marginEnd="10dp"
-        android:text="Download"
-        android:id="@+id/card_btn_delete"
+        android:text="Open In Browser"
+        android:id="@+id/open_in_browser"
         android:layout_gravity="end|center"
         style="?attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginEnd="10dp"
+        android:text="Download"
+        android:id="@+id/card_btn_delete"
+        style="?attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </com.google.android.material.card.MaterialCardView>

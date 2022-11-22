@@ -14,7 +14,9 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryHolde
 
     private var repos = mutableListOf<GitHubRepo>()
 
-    private var mCallback: ((result: GitHubRepo) -> Unit)? = null
+    private var mCallbackDownload: ((result: GitHubRepo) -> Unit)? = null
+
+    private var mCallbackBrowser: ((result: GitHubRepo) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryHolder {
         return RepositoryHolder(
@@ -31,7 +33,10 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryHolde
         holder.binding.repoName.text = repository.name
         holder.binding.description.text = repository.description
         holder.binding.cardBtnDelete.setOnClickListener{
-            mCallback?.invoke(repository)
+            mCallbackDownload?.invoke(repository)
+        }
+        holder.binding.openInBrowser.setOnClickListener{
+            mCallbackBrowser?.invoke(repository)
         }
     }
 
@@ -46,7 +51,10 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryHolde
     }
 
     fun setOnDownloadClickListener(function: ((GitHubRepo) -> Unit)?){
-        mCallback = function
+        mCallbackDownload = function
+    }
+    fun setOnBrowserClickListener(function: ((GitHubRepo) -> Unit)?){
+        mCallbackBrowser = function
     }
 
     inner class RepositoryHolder(val binding: RepositotyItemBinding) : RecyclerView.ViewHolder(binding.root)

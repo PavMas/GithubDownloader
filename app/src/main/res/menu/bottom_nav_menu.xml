@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/usersFragment"
         android:enabled="true"
         android:icon="@drawable/ic_repo"
-        android:title="GetRepository"/>
+        android:title="@string/getrepository" />
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/downloadsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_download"
-        android:title="Download"/>
+        android:title="@string/download" />
+
 </menu>
