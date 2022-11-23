@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.trifcdr.githubdownloader.data.database.model.Download
 import com.trifcdr.githubdownloader.databinding.DownloadItemBinding
-import com.trifcdr.githubdownloader.domain.model.GitHubRepo
 
 /**
  * Created by trifcdr.

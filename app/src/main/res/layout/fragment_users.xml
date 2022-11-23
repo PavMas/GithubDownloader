@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".presentation.fragments.UsersFragment">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/user_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:indeterminate="true"
+        android:visibility="gone"/>
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +29,9 @@
             android:textSize="20sp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:hint="Enter useranme"/>
+            android:hint="@string/enter_username"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/find_btn"
@@ -28,10 +39,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|end"
             android:padding="10dp"
-            android:text="Find" />
+            android:text="@string/find" />
     </FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

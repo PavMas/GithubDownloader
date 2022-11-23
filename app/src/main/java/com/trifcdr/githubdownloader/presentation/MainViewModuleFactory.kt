@@ -28,13 +28,16 @@ class MainViewModuleFactory(context: Context) : ViewModelProvider.Factory {
 
     private val insertDownloadUseCase by lazy(LazyThreadSafetyMode.NONE) { InsertDownloadUseCase(gitHubRepository = gitHubRepository) }
 
+    private val deleteDownloadUseCase by lazy(LazyThreadSafetyMode.NONE) { DeleteDownloadUseCase(gitHubRepository = gitHubRepository) }
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel(
             getUsersUseCase = getUsersUseCase,
             getRepositoryByUsername = getRepositoryByUsername,
             getAllDownloadsUseCase = getAllDownloadsUseCase,
             downloadRepositoryUseCase = downloadRepositoryUseCase,
-            insertDownloadUseCase = insertDownloadUseCase
+            insertDownloadUseCase = insertDownloadUseCase,
+            deleteDownloadUseCase = deleteDownloadUseCase
         ) as T
     }
 }

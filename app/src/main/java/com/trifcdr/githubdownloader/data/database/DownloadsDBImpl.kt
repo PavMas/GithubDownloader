@@ -24,7 +24,15 @@ class DownloadsDBImpl(private val context: Context) : DownloadsDB {
 
     override suspend fun insertDownload(download: Download) {
         CoroutineScope(Dispatchers.IO).launch {
-            database.downloadDao().insert(download)
+            database.downloadDao().insert(download.name, download.repoOwner)
         }
     }
+
+    override suspend fun deleteDownload(download: Download) {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.downloadDao().delete(download = download)
+        }
+    }
+
+
 }

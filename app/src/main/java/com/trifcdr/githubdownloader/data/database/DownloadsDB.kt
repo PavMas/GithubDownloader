@@ -10,4 +10,6 @@ interface DownloadsDB {
     suspend fun getAll() : MutableList<Download>
 
     suspend fun insertDownload(download: Download)
+
+    suspend fun deleteDownload(download: Download)
 }

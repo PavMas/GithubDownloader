@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trifcdr.githubdownloader.databinding.FragmentUsersBinding
 import com.trifcdr.githubdownloader.domain.model.UserParams
-import com.trifcdr.githubdownloader.presentation.MainActivity
 import com.trifcdr.githubdownloader.presentation.MainViewModel
 import com.trifcdr.githubdownloader.presentation.adapter.UserAdapter
 
@@ -43,9 +41,11 @@ class UsersFragment : Fragment() {
         vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         initRecyclerView()
         binding.findBtn.setOnClickListener{
+            binding.userIndicator.visibility = View.VISIBLE
             (vm as MainViewModel).searchUsers(UserParams(binding.username.text.toString()))
         }
         (vm as MainViewModel).resultLiveUsers.observe(viewLifecycleOwner) {
+            binding.userIndicator.visibility = View.GONE
             adapter.setUserList(it.users)
 
         }

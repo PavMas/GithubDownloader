@@ -17,4 +17,6 @@ interface GitHubRepository {
     suspend fun getAllDownloads() : MutableList<Download>
 
     suspend fun insertDownload(download: Download)
+
+    suspend fun deleteDownload(download: Download)
 }

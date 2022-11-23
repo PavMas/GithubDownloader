@@ -19,7 +19,7 @@ abstract class DownloadsDatabase : RoomDatabase() {
     abstract fun downloadDao() : DownloadDao
 
     companion object{
-        var downloadDatabase: DownloadsDatabase? = null
+        private var downloadDatabase: DownloadsDatabase? = null
 
         fun getInstance(context: Context) : DownloadsDatabase {
             if(downloadDatabase == null){

@@ -6,7 +6,6 @@ import com.trifcdr.githubdownloader.data.network.retrofit.GithubApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 
 /**
  * Created by trifcdr.
@@ -29,15 +28,14 @@ class GithubApiImpl : GithubApi {
     }
 
     override suspend fun getRepos(username: String): ReposListResponse {
-        var responseFromServer = ReposListResponse(mutableListOf())
+        val responseFromServer = ReposListResponse(mutableListOf())
         val response = api.getRepos(name = username)
         CoroutineScope(Dispatchers.IO).launch {
             try{
                 val reposResponse = response.execute()
                 responseFromServer.reposList.addAll(reposResponse.body()!!)
             }
-            catch (e: Exception){
-                e
+            catch (_: Exception){
             }
         }.join()
         return responseFromServer

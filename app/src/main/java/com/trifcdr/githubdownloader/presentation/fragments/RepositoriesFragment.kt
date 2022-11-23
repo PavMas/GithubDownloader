@@ -9,16 +9,12 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.trifcdr.githubdownloader.R
 import com.trifcdr.githubdownloader.data.database.model.Download
 import com.trifcdr.githubdownloader.databinding.FragmentRepositoryBinding
-import com.trifcdr.githubdownloader.presentation.MainActivity
 import com.trifcdr.githubdownloader.presentation.MainViewModel
 import com.trifcdr.githubdownloader.presentation.adapter.RepositoryAdapter
 
@@ -32,7 +28,7 @@ class RepositoriesFragment : Fragment() {
 
     private lateinit var binding: FragmentRepositoryBinding
 
-    lateinit var rv: RecyclerView
+    private lateinit var rv: RecyclerView
 
     private lateinit var adapter: RepositoryAdapter
 
@@ -57,8 +53,16 @@ class RepositoriesFragment : Fragment() {
         })
         vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         initRecyclerView()
+
         (vm as MainViewModel).resultLiveRepos.observe(viewLifecycleOwner){
-            adapter.setReposList(it.repositories)
+            binding.repositoryIndicator.visibility = View.GONE
+            if(it.repositories.size != 0) {
+                adapter.setReposList(it.repositories)
+                rv.visibility = View.VISIBLE
+            }
+            else{
+                binding.noRepos.visibility = View.VISIBLE
+            }
         }
         (vm as MainViewModel).getRepositories(user = user)
         adapter.setOnDownloadClickListener {
@@ -85,6 +89,10 @@ class RepositoriesFragment : Fragment() {
         adapter = RepositoryAdapter()
         rv.adapter = adapter
     }
-
-
+    override fun onResume() {
+        super.onResume()
+        binding.noRepos.visibility = View.GONE
+        binding.repositoryIndicator.visibility = View.VISIBLE
+        rv.visibility = View.INVISIBLE
+    }
 }

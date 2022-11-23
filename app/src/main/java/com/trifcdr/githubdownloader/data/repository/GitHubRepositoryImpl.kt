@@ -38,4 +38,8 @@ private val database: DownloadsDB) : GitHubRepository{
         database.insertDownload(download = download)
     }
 
+    override suspend fun deleteDownload(download: Download) {
+        database.deleteDownload(download = download)
+    }
+
 }

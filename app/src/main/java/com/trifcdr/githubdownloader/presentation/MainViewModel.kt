@@ -1,6 +1,5 @@
 package com.trifcdr.githubdownloader.presentation
 
-import android.provider.MediaStore.Downloads
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +16,8 @@ class MainViewModel(private val getUsersUseCase: GetUsersUseCase,
 private val getRepositoryByUsername: GetRepositoryByUsername,
 private val downloadRepositoryUseCase: DownloadRepositoryUseCase,
 private val getAllDownloadsUseCase: GetAllDownloadsUseCase,
-private val insertDownloadUseCase: InsertDownloadUseCase) : ViewModel() {
+private val insertDownloadUseCase: InsertDownloadUseCase,
+private val deleteDownloadUseCase: DeleteDownloadUseCase) : ViewModel() {
 
     private val resultLiveUsersMutable = MutableLiveData<UsersList>()
     val resultLiveUsers: LiveData<UsersList> = resultLiveUsersMutable
@@ -44,5 +44,9 @@ private val insertDownloadUseCase: InsertDownloadUseCase) : ViewModel() {
 
     fun insertDownload(download: Download) = viewModelScope.launch {
         insertDownloadUseCase.execute(download = download)
+    }
+
+    fun deleteDownload(download: Download) = viewModelScope.launch {
+        deleteDownloadUseCase.execute(download = download)
     }
 }

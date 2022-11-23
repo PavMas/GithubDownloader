@@ -11,4 +11,7 @@
     <string name="icon">icon</string>
     <string name="open_in_browser">Open In Browser</string>
     <string name="downloadText">Download</string>
+    <string name="enter_username">Enter username</string>
+    <string name="find">Find</string>
+    <string name="there_are_no_public_repositories">There are no public repositories!</string>
 </resources>

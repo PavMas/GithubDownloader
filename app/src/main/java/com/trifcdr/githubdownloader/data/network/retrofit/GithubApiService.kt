@@ -1,17 +1,14 @@
 package com.trifcdr.githubdownloader.data.network.retrofit
 
-import com.trifcdr.githubdownloader.data.network.model.ReposListResponse
 import com.trifcdr.githubdownloader.data.network.model.UsersListResponse
 import com.trifcdr.githubdownloader.data.rest.BASE_URL
 import com.trifcdr.githubdownloader.domain.model.GitHubRepo
-import com.trifcdr.githubdownloader.domain.model.GitHubUser
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 

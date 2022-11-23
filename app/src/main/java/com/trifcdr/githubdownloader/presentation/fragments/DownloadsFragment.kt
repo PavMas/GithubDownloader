@@ -1,6 +1,5 @@
 package com.trifcdr.githubdownloader.presentation.fragments
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.trifcdr.githubdownloader.databinding.FragmentDownloadsBinding
-import com.trifcdr.githubdownloader.presentation.MainActivity
 import com.trifcdr.githubdownloader.presentation.MainViewModel
 import com.trifcdr.githubdownloader.presentation.adapter.DownloadsAdapter
-import com.trifcdr.githubdownloader.presentation.adapter.RepositoryAdapter
-import com.trifcdr.githubdownloader.presentation.adapter.UserAdapter
 
 /**
  * Created by trifcdr.
@@ -25,11 +21,11 @@ class DownloadsFragment : Fragment() {
 
     private lateinit var vm: ViewModel
 
-    lateinit var rv: RecyclerView
+    private lateinit var rv: RecyclerView
 
     private lateinit var binding: FragmentDownloadsBinding
 
-    lateinit var adapter: DownloadsAdapter
+    private lateinit var adapter: DownloadsAdapter
 
 
     override fun onCreateView(
@@ -47,11 +43,14 @@ class DownloadsFragment : Fragment() {
         adapter.setOnItemClickListener {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(it.name)
-                .setMessage("Do you want to delete this repository?")
+                .setMessage("Do you want to delete this repository from list?")
                 .setNegativeButton("Close"
-                ) { p0, p1 ->  }
+                ) { _, _ ->  }
                 .setPositiveButton("Yes"
-                ) { p0, p1 ->  }
+                ) { _, _ -> (vm as MainViewModel).deleteDownload(it)
+                    (vm as MainViewModel).getAllDownloads()
+
+                }
                 .show()
         }
         return binding.root
