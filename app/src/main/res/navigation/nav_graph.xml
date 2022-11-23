@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_users">
         <action
             android:id="@+id/usersFragmentToRepositoryFragment"
-            app:destination="@id/repositoriesFragment" />
+            app:destination="@id/repositoriesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
 
     </fragment>
     <fragment
@@ -32,6 +34,8 @@
             app:argType="com.trifcdr.githubdownloader.domain.model.GitHubUser"/>
         <action
             android:id="@+id/action_repositoriesFragment_to_usersFragment"
-            app:destination="@id/usersFragment" />
+            app:destination="@id/usersFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

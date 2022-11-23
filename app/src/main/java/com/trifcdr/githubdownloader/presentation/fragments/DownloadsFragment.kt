@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -38,13 +39,13 @@ class DownloadsFragment : Fragment() {
     ): View {
         binding = FragmentDownloadsBinding.inflate(inflater, container, false)
         initRecyclerView()
-        vm = (activity as MainActivity).vm
+        vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         (vm as MainViewModel).resultLiveDownloads.observe(viewLifecycleOwner) {
             adapter.setDownloadsList(it)
         }
         (vm as MainViewModel).getAllDownloads()
         adapter.setOnItemClickListener {
-            val dialog = MaterialAlertDialogBuilder(requireContext())
+            MaterialAlertDialogBuilder(requireContext())
                 .setTitle(it.name)
                 .setMessage("Do you want to delete this repository?")
                 .setNegativeButton("Close"

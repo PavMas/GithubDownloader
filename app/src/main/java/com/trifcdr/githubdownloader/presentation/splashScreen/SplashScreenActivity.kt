@@ -1,10 +1,11 @@
-package com.trifcdr.githubdownloader.presentation
+package com.trifcdr.githubdownloader.presentation.splashScreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.trifcdr.githubdownloader.databinding.ActivitySplashScreenBinding
+import com.trifcdr.githubdownloader.presentation.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {

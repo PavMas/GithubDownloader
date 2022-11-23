@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-    lateinit var vm: MainViewModel
+    private lateinit var vm: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         vm = ViewModelProvider(this, MainViewModuleFactory(this))[MainViewModel::class.java]
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        //val appBarConfiguration =  AppBarConfiguration.Builder(R.id.usersFragment, R.id.downloadsFragment).build()
         navController = navHostFragment.navController
         setupActionBarWithNavController(this, navController)
         binding.bottomNavigationView.setupWithNavController(navController)

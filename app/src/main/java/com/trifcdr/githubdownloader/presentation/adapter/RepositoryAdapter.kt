@@ -28,10 +28,11 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryHolde
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) {
         val repository = repos[position]
-        holder.binding.repoName.text = repository.name
-        holder.binding.description.text = repository.description
+        holder.binding.repoName.text = "\t${repository.name}"
+        holder.binding.description.text = "\t${repository.description}"
         holder.binding.cardBtnDelete.setOnClickListener{
             mCallbackDownload?.invoke(repository)
         }

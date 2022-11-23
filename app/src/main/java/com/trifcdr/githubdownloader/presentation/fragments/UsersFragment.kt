@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +40,7 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUsersBinding.inflate(layoutInflater, container, false)
-        vm = (activity as MainActivity).vm
+        vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         initRecyclerView()
         binding.findBtn.setOnClickListener{
             (vm as MainViewModel).searchUsers(UserParams(binding.username.text.toString()))

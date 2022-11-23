@@ -8,9 +8,11 @@ import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trifcdr.githubdownloader.R
@@ -47,12 +49,13 @@ class RepositoriesFragment : Fragment() {
         requireActivity().addMenuProvider(object : MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                findNavController().navigate(R.id.usersFragment)
+                val action = RepositoriesFragmentDirections.actionRepositoriesFragmentToUsersFragment()
+                findNavController().navigate(action)
                 return true
             }
 
         })
-        vm = (activity as MainActivity).vm
+        vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         initRecyclerView()
         (vm as MainViewModel).resultLiveRepos.observe(viewLifecycleOwner){
             adapter.setReposList(it.repositories)
@@ -74,9 +77,9 @@ class RepositoriesFragment : Fragment() {
         setManagerAndAdapter()
     }
     private fun setManagerAndAdapter() {
-        rv.layoutManager = LinearLayoutManager(
-            this.context,
-            LinearLayoutManager.VERTICAL,
+        rv.layoutManager = GridLayoutManager(
+            this.context, 1,
+            GridLayoutManager.VERTICAL,
             false
         )
         adapter = RepositoryAdapter()
