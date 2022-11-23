@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.trifcdr.githubdownloader.data.database.model.Download
 import com.trifcdr.githubdownloader.databinding.DownloadItemBinding
+import com.trifcdr.githubdownloader.domain.model.GitHubRepo
 
 /**
  * Created by trifcdr.
@@ -13,6 +14,9 @@ import com.trifcdr.githubdownloader.databinding.DownloadItemBinding
 class DownloadsAdapter : RecyclerView.Adapter<DownloadsAdapter.DownloadHolder>() {
 
     private var downloadsList = mutableListOf<Download>()
+
+    private var mCallback: ((result: Download) -> Unit)? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadHolder {
         return DownloadHolder(DownloadItemBinding.inflate(
@@ -27,6 +31,9 @@ class DownloadsAdapter : RecyclerView.Adapter<DownloadsAdapter.DownloadHolder>()
         val download = downloadsList[position]
         holder.binding.repoName.text = download.name
         holder.binding.userName.text = download.repoOwner
+        holder.binding.root.setOnClickListener{
+            mCallback?.invoke(download)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +46,9 @@ class DownloadsAdapter : RecyclerView.Adapter<DownloadsAdapter.DownloadHolder>()
         notifyDataSetChanged()
     }
 
+    fun setOnItemClickListener(function: ((Download) -> Unit)){
+        mCallback = function
+    }
 
 
     inner class DownloadHolder(val binding: DownloadItemBinding) : RecyclerView.ViewHolder(binding.root)
