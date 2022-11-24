@@ -26,10 +26,11 @@ class DownloadsAdapter : RecyclerView.Adapter<DownloadsAdapter.DownloadHolder>()
             )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DownloadHolder, position: Int) {
         val download = downloadsList[position]
-        holder.binding.repoName.text = download.name
-        holder.binding.userName.text = download.repoOwner
+        holder.binding.repoName.text = "Name: ${download.name}"
+        holder.binding.userName.text = "Author: ${download.repoOwner}"
         holder.binding.root.setOnClickListener{
             mCallback?.invoke(download)
         }

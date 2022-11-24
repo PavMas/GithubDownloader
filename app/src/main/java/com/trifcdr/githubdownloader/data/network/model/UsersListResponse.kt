@@ -1,7 +1,6 @@
 package com.trifcdr.githubdownloader.data.network.model
 
 import com.trifcdr.githubdownloader.domain.model.GitHubUser
-import retrofit2.Call
 
 /**
  * Created by trifcdr.

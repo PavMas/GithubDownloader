@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.trifcdr.githubdownloader.R
 import com.trifcdr.githubdownloader.databinding.ActivityMainBinding
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         vm = ViewModelProvider(this, MainViewModuleFactory(this))[MainViewModel::class.java]
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
-        setupActionBarWithNavController(this, navController)
         binding.bottomNavigationView.setupWithNavController(navController)
 
     }

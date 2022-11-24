@@ -24,7 +24,7 @@ interface GithubApiService {
     fun getRepos(@Path("username") name: String) : Call<MutableList<GitHubRepo>>
 
     companion object {
-        var githubApiService: GithubApiService? = null
+        private var githubApiService: GithubApiService? = null
 
         fun getInstance() : GithubApiService{
             if(githubApiService == null){

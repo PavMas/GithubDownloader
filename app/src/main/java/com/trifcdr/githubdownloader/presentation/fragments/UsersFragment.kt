@@ -24,12 +24,11 @@ class UsersFragment : Fragment() {
 
     private lateinit var vm: ViewModel
 
-    lateinit var rv: RecyclerView
+    private lateinit var rv: RecyclerView
 
     private lateinit var binding: FragmentUsersBinding
 
-    lateinit var adapter: UserAdapter
-
+    private lateinit var adapter: UserAdapter
 
 
     override fun onCreateView(

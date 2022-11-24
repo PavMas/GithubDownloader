@@ -13,16 +13,18 @@
         <action
             android:id="@+id/usersFragmentToRepositoryFragment"
             app:destination="@id/repositoriesFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left" -->
+
 
     </fragment>
     <fragment
         android:id="@+id/downloadsFragment"
         android:name="com.trifcdr.githubdownloader.presentation.fragments.DownloadsFragment"
         android:label="@string/download"
-        tools:layout="@layout/fragment_downloads">
-    </fragment>
+        tools:layout="@layout/fragment_downloads"/>
 
     <fragment
         android:id="@+id/repositoriesFragment"
@@ -35,7 +37,9 @@
         <action
             android:id="@+id/action_repositoriesFragment_to_usersFragment"
             app:destination="@id/usersFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+<!--            app:enterAnim="@anim/slide_in_left"-->
+<!--            app:exitAnim="@anim/slide_out_right" />-->
     </fragment>
 </navigation>

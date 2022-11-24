@@ -11,5 +11,4 @@ import androidx.room.PrimaryKey
 @Entity
 data class Download(@PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo val name: String,
-    @ColumnInfo val repoOwner: String){
-}
+    @ColumnInfo val repoOwner: String)

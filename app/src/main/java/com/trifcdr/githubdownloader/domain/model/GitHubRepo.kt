@@ -6,6 +6,6 @@ package com.trifcdr.githubdownloader.domain.model
 data class GitHubRepo(val id: Long,
                       val name: String,
                       val owner: GitHubUser,
-                      val description: String,
+                      val description: String?,
                       val language: String,
                       val html_url: String)

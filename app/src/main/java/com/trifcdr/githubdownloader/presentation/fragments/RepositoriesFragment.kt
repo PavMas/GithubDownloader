@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuProvider
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
@@ -42,18 +42,12 @@ class RepositoriesFragment : Fragment() {
     ): View {
         binding = FragmentRepositoryBinding.inflate(layoutInflater, container, false)
         val user = args.user
-        requireActivity().addMenuProvider(object : MenuProvider{
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val action = RepositoriesFragmentDirections.actionRepositoriesFragmentToUsersFragment()
-                findNavController().navigate(action)
-                return true
-            }
-
-        })
         vm = ViewModelProviders.of(requireActivity())[MainViewModel::class.java]
         initRecyclerView()
-
+        requireActivity().onBackPressedDispatcher.addCallback(this){
+            val action = RepositoriesFragmentDirections.actionRepositoriesFragmentToUsersFragment()
+            findNavController().navigate(action)
+        }
         (vm as MainViewModel).resultLiveRepos.observe(viewLifecycleOwner){
             binding.repositoryIndicator.visibility = View.GONE
             if(it.repositories.size != 0) {
@@ -95,4 +89,5 @@ class RepositoriesFragment : Fragment() {
         binding.repositoryIndicator.visibility = View.VISIBLE
         rv.visibility = View.INVISIBLE
     }
+
 }
